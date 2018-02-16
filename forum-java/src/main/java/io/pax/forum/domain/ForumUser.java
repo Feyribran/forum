@@ -9,12 +9,22 @@ public class ForumUser implements User {
     int id;
     String name;
     List<Comment> comments;
+    List<Topic> topics;
 
     public ForumUser(){}
 
     public ForumUser(int id, String name){
         this.id = id;
         this.name = name;
+    }
+
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 
     @Override

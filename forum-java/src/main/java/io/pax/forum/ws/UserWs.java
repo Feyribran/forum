@@ -25,6 +25,13 @@ public class UserWs {
         return dao.listUsers();
     }
 
+    @GET
+    @Path("{id}")
+    public ForumUser getUser(@PathParam("id") int userId) throws SQLException {
+        UserDao dao = new UserDao();
+        return dao.findUserWithTopics(userId);
+    }
+
     @POST
     public ForumUser createUser(ForumUser user) throws SQLException {
         if (user.getName().length() < 2){

@@ -33,26 +33,26 @@ public class TopicDao {
         return topics;
     }
 
-    public int createTopic(String title) throws SQLException {
-        String query = "INSERT INTO topic (title) VALUES (?)";
+    public int createTopic(int adminId, String title) throws SQLException {
+        String query = "INSERT INTO topic (title, admin_id) VALUES (?,?)";
 
         System.out.println(query);
 
         Connection conn = this.connector.getConnection();
         PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1,title);
-        //statement.setInt(1,id);
+        statement.setInt(2,adminId);
 
         statement.executeUpdate();
         ResultSet keys = statement.getGeneratedKeys();
         keys.next();
-        int topicId = keys.getInt(1);
+        int id = keys.getInt(1);
 
 
         statement.close();
         conn.close();
 
-        return topicId;
+        return id;
     }
 
     public List<Topic> findByTitle(String extract) throws SQLException{

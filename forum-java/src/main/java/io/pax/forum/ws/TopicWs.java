@@ -1,7 +1,6 @@
 package io.pax.forum.ws;
 
 import io.pax.forum.dao.TopicDao;
-import io.pax.forum.domain.ForumTopic;
 import io.pax.forum.domain.Topic;
 
 import javax.ws.rs.*;
@@ -23,8 +22,8 @@ public class TopicWs {
         return dao.listTopics();
     }
 
-    @POST
-    public ForumTopic createTopic(ForumTopic topic) throws SQLException {
+/*    @POST
+    public Topic createTopic(Topic topic) throws SQLException {
         if (topic.getTitle().length() < 2){
             throw new NotAcceptableException("406: user name must have at least 2 letters");
         }
@@ -37,7 +36,7 @@ public class TopicWs {
             throw e;
         }
 
-    }
+    }*/
 
     @DELETE
     @Path("{id}")

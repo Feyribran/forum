@@ -1,7 +1,18 @@
-<section>
-  Select user :
-  <select>
-    <option *ngFor="let user of users" (click)="details(user)">{{user.name}}</option>
-  </select>
-</section>
-<span *ngIf="selectedUser">{{selectedUser.name}}</span>
+<header>
+  <section>
+    Select user :
+    <select>
+      <option *ngFor="let user of users" (click)="details(user)">{{user.name}}</option>
+    </select>
+  </section>
+
+  <span *ngIf="selectedUser">{{selectedUser.name}}</span>
+
+  <section *ngIf="selectedUser">
+    <ul>
+      <li *ngFor="let topic of selectedUser.topics">{{topic.title}}</li>
+    </ul>
+
+  </section>
+
+</header>

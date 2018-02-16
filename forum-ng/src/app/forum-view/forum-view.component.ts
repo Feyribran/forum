@@ -21,8 +21,15 @@ export class ForumViewComponent implements OnInit {
 
   details(user: User){
     this.selectedUser = user;
+
+    this.dataService
+      .fetchUserWithTopics(user)
+      .then(forumUser => this.selectedUser = forumUser)
+      .then(console.log);
+
     console.log('you selected : ', user);
   }
+
   ngOnInit() {
   }
 

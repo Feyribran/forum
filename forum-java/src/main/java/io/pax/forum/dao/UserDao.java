@@ -1,6 +1,8 @@
 package io.pax.forum.dao;
 
+import io.pax.forum.domain.ForumTopic;
 import io.pax.forum.domain.ForumUser;
+import io.pax.forum.domain.Topic;
 import io.pax.forum.domain.User;
 
 import java.sql.*;
@@ -84,8 +86,38 @@ public class UserDao {
         conn.close();
     }
 
+    public ForumUser findUserWithTopics(int userId) throws SQLException {
+        Connection connection = this.connector.getConnection();
+        String query = "SELECT * FROM topic t RIGHT JOIN user u ON t.admin_id=u.id WHERE u.id =?";
 
-    public List<User> findByName(String extract) throws SQLException{
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, userId);
+        ResultSet set = statement.executeQuery();
+
+        ForumUser user = null;
+        //pro tip: always init lists
+        List<Topic> topics = new ArrayList<>();
+
+        while (set.next()) {
+            String userName = set.getString("u.name");
+            System.out.println("userName" + userName);
+            user = new ForumUser(userId, userName);
+
+
+            int topicId = set.getInt("t.id");
+            String topicName = set.getString("t.title");
+
+            if (topicId > 0) {
+                Topic topic = new ForumTopic(topicId, topicName);
+                topics.add(topic);
+            }
+        }
+        user.setTopics(topics);
+
+        return user;
+    }
+
+        public List<User> findByName(String extract) throws SQLException{
         String query = "SELECT * FROM user WHERE name LIKE ?";
         List<User> users = new ArrayList<>();
         System.out.println(query);
@@ -132,6 +164,7 @@ public class UserDao {
     public static void main(String[] args) throws SQLException {
 
         UserDao dao = new UserDao();
+        System.out.println(dao.findUserWithTopics(12).getTopics());
         //dao.deleteByName("Walou");
 /*        dao.createUser("Arnaud");
         dao.createUser("Asmaâ");
