@@ -56,7 +56,6 @@ public class UserDao {
         return userId;
     }
 
-
     public void deleteUserById(int userId) throws SQLException {
         String query = "DELETE FROM user WHERE id=?";
 
