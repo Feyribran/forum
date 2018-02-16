@@ -43,4 +43,9 @@ public class ForumUser implements User {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

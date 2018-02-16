@@ -1,0 +1,7 @@
+<section>
+  Select user :
+  <select>
+    <option *ngFor="let user of users" (click)="details(user)">{{user.name}}</option>
+  </select>
+</section>
+<span *ngIf="selectedUser">{{selectedUser.name}}</span>

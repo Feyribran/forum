@@ -134,8 +134,10 @@ public class UserDao {
 
         UserDao dao = new UserDao();
         //dao.deleteByName("Walou");
-        dao.createUser("Prout");
-
+/*        dao.createUser("Arnaud");
+        dao.createUser("Asmaâ");
+        dao.createUser("Julien");
+        dao.createUser("Kenza");*/
     }
 
 

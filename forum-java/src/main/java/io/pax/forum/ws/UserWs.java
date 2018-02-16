@@ -14,7 +14,7 @@ import java.util.List;
  * Created by AELION on 08/02/2018.
  *
  **/
-@Path("user")
+@Path("users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserWs {
