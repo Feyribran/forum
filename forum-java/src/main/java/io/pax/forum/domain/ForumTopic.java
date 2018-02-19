@@ -9,6 +9,7 @@ public class ForumTopic implements Topic{
 
     String title;
     int id;
+    ForumUser admin;
     List<Comment> comments;
 
     public ForumTopic(){
@@ -19,6 +20,12 @@ public class ForumTopic implements Topic{
         this.title = title;
     }
 
+    public ForumTopic(int id, String title, ForumUser admin){
+        this.id = id;
+        this.title = title;
+        this.admin = admin;
+    }
+
     @Override
     public int getId() {
         return this.id;
@@ -27,6 +34,19 @@ public class ForumTopic implements Topic{
     @Override
     public String getTitle() {
         return this.title;
+    }
+
+    @Override
+    public ForumUser getAdmin() {
+        return this.admin;
+    }
+
+    public void setAdmin(ForumUser admin) {
+        this.admin = admin;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override

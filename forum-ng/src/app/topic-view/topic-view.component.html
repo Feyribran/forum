@@ -1,3 +1,6 @@
-<p>
-  topic-view works!
-</p>
+<section>
+  Select topic :
+  <select>
+    <option *ngFor="let topic of selectedUser.topics" >{{topic.title}}</option>
+  </select>
+</section>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ForumViewComponent } from './forum-view/forum-view.component';
@@ -15,7 +15,7 @@ import { TopicViewComponent } from './topic-view/topic-view.component';
     TopicViewComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule
+    BrowserModule, HttpClientModule, FormsModule
   ],
   providers: [
     DataService

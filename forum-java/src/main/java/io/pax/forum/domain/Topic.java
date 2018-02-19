@@ -8,5 +8,6 @@ import java.util.List;
 public interface Topic {
     int getId();
     String getTitle();
+    User getAdmin();
     List<Comment> getComments();
 }

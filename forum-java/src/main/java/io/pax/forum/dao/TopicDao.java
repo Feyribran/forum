@@ -98,7 +98,7 @@ public class TopicDao {
 
         TopicDao dao = new TopicDao();
         System.out.println(dao.listTopics());
-        //dao.createTopic("Beekeeping");
+        dao.createTopic(13,"termites");
 
     }
 }
