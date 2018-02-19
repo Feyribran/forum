@@ -6,5 +6,5 @@ export class Topic{
   title: string;
   id: number;
   admin: User;
-  comments: Comment[]=null;
+  comments: Comment[];
 }

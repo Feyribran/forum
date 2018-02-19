@@ -14,6 +14,7 @@ export class ForumViewComponent implements OnInit {
   users: User[];
   selectedUser: User;
   createdTopic: Topic = new Topic();
+  selectedTopic: Topic;
 
   constructor(public dataService: DataService) {
 
@@ -31,12 +32,27 @@ export class ForumViewComponent implements OnInit {
       this.selectedUser.topics = [];
     }
 
+    if(!this.selectedUser.comments){
+      this.selectedUser.comments = [];
+    }
+
     this.dataService
       .fetchUserWithTopics(user)
       .then(forumUser => this.selectedUser = forumUser)
       .then(console.log);
+  }
 
-    console.log('you selected : ', user);
+  getComments(topic: Topic){
+    this.selectedTopic = topic;
+
+    if(!this.selectedTopic.comments){
+      this.selectedTopic.comments = [];
+    }
+
+    this.dataService
+      .fetchCommentsFromUser(this.selectedUser)
+      .then(commentsUser => this.selectedUser.comments = commentsUser)
+      .then(console.log);
   }
 
   createTopic(){

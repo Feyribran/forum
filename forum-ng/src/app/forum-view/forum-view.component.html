@@ -8,13 +8,26 @@
 
   <section *ngIf="selectedUser">
     <ul>
-      <li *ngFor="let topic of selectedUser.topics">{{topic.title}}</li>
+      <li *ngFor="let topic of selectedUser.topics">
+        <a (click)="getComments(topic)">{{topic.title}}</a>
+      </li>
     </ul>
 
-  <form>
-    <input type="text" name="FormTopic" [(ngModel)]="createdTopic.title">
-    <button (click)="createTopic()">create topic</button>
-  </form>
+
+    <section *ngIf="selectedTopic">
+      <ul>
+        <li *ngFor="let comment of selectedTopic.comments">
+          {{comment.content}}
+        </li>
+      </ul>
+    </section>
+  </section>
+
+  <section>
+    <form>
+      <input type="text" name="FormTopic" [(ngModel)]="createdTopic.title">
+      <button (click)="createTopic()">create topic</button>
+    </form>
   </section>
 
   <section *ngIf="selectedUser">

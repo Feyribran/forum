@@ -13,11 +13,14 @@ public class ForumUser implements User {
 
     public ForumUser(){}
 
+    public  ForumUser(String name){
+        this.name = name;
+    }
+
     public ForumUser(int id, String name){
         this.id = id;
         this.name = name;
     }
-
 
     public List<Topic> getTopics() {
         return topics;
@@ -39,7 +42,7 @@ public class ForumUser implements User {
 
     @Override
     public List<Comment> getComments() {
-        return null;
+        return comments;
     }
 
     public void setId(int id) {

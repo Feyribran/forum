@@ -4,17 +4,60 @@ package io.pax.forum.domain;
  * Created by AELION on 15/02/2018.
  */
 public class ForumComment implements Comment {
-    String title;
-    String content;
 
-    @Override
-    public String getTitle() {
-        return this.title;
+    int id;
+    String content;
+    ForumTopic topic;
+    User user;
+
+    public ForumComment() {
+    }
+
+    public ForumComment(int id) {
+        this.id = id;
+    }
+
+    public ForumComment(int id, User user) {
+        this.id = id;
+        this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
     public String getContent() {
-        return this.content;
+        return content;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Override
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(ForumTopic topic) {
+        this.topic = topic;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+/*    @Override
+    public String toString() {
+        return "comment : " +id+ " from " +user.getId();
+    }*/
 }

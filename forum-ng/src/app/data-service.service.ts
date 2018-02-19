@@ -47,4 +47,15 @@ export class DataService {
 
   }
 
+  fetchCommentsFromUser(user: User): Promise<Comment[]>{
+    let url = 'http://localhost:8080/forum/api/comments/'+user.id;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(data => {
+        console.log('user with comment :',  data);
+        return data as Comment[];
+      })
+  }
+
 }
