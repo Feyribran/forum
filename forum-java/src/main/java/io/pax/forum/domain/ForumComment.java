@@ -8,7 +8,7 @@ public class ForumComment implements Comment {
     int id;
     String content;
     ForumTopic topic;
-    User user;
+    ForumUser user;
 
     public ForumComment() {
     }
@@ -17,13 +17,19 @@ public class ForumComment implements Comment {
         this.id = id;
     }
 
-    public ForumComment(int id, User user) {
+    public ForumComment(int id, ForumUser user) {
         this.id = id;
         this.user = user;
     }
 
     public ForumComment(int id, ForumTopic topic) {
         this.id = id;
+        this.topic = topic;
+    }
+
+    public ForumComment(int id, ForumTopic topic, ForumUser user){
+        this.id = id;
+        this.user = user;
         this.topic = topic;
     }
 
@@ -53,11 +59,11 @@ public class ForumComment implements Comment {
         this.topic = topic;
     }
 
-    public User getUser() {
+    public ForumUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(ForumUser user) {
         this.user = user;
     }
 

@@ -6,8 +6,20 @@
     </select>
   </section>
 
+  <!-- Appears when a user is selected -->
   <section *ngIf="selectedUser">
+
+
     <h2>{{selectedUser.name}}'s topics</h2>
+
+    <!-- Input for creating topic -->
+    <section>
+      <form>
+        <input type="text" name="FormTopic" [(ngModel)]="createdTopic.title">
+        <button (click)="createTopic()">create topic</button>
+      </form>
+    </section>
+
     <ul>
       <li *ngFor="let topic of selectedUser.topics">
         <a (click)="getComments(topic)">{{topic.title}}</a>
@@ -15,29 +27,33 @@
     </ul>
 
 
-    <section *ngIf="selectedTopic">
+    <!-- List of comments for the selected topic -->
+    <section class="commentTopic" *ngIf="selectedTopic">
       <ul>
         <li *ngFor="let comment of selectedTopic.comments">
           {{comment.user.name}} : {{comment.content}}
         </li>
       </ul>
+
+      <form>
+        <input type="text" name="FormComment" [(ngModel)]="createdComment.content">
+        <button (click)="createComment()">Post</button>
+      </form>
+
     </section>
-  </section>
 
-  <section>
-    <form>
-      <input type="text" name="FormTopic" [(ngModel)]="createdTopic.title">
-      <button (click)="createTopic()">create topic</button>
-    </form>
-  </section>
 
-  <section *ngIf="selectedUser">
-    Select topic :
-    <select>
-      <option *ngFor="let topic of selectedUser.topics">{{topic.title}}</option>
-    </select>
-  </section>
-  <!--<span *ngIf="selectedUser">{{selectedUser.name}}'s selected topic</span>-->
 
+
+    <!--
+      <section *ngIf="selectedUser">
+        Select topic :
+        <select>
+          <option *ngFor="let topic of selectedUser.topics" (click)="getComments(topic)">{{topic.title}}</option>
+        </select>
+      </section>-->
+    <!--<span *ngIf="selectedUser">{{selectedUser.name}}'s selected topic</span>-->
+
+  </section>
 </header>
 

@@ -29,7 +29,7 @@ public class UserWs {
     @Path("{id}")
     public ForumUser getUser(@PathParam("id") int userId) throws SQLException {
         UserDao dao = new UserDao();
-        return dao.findUserWithTopics(userId);
+        return dao.findAdminWithTopics(userId);
     }
 
     @POST

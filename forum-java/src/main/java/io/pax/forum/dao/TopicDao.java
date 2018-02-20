@@ -79,6 +79,31 @@ public class TopicDao {
         return topic;
     }*/
 
+    public List<Topic> findByUser(int userId) throws SQLException {
+        String query = "SELECT DISTINCT t.id, t.title FROM topic t JOIN comment c ON c.topic_id=t.id WHERE c.user_id LIKE ?";
+        List<Topic> topics = new ArrayList<>();
+        System.out.println(query);
+
+        Connection conn = this.connector.getConnection();
+        PreparedStatement statement = conn.prepareStatement(query);
+        statement.setInt(1, userId);
+
+        ResultSet keys = statement.executeQuery();
+
+
+        while (keys.next()) {
+            int id = keys.getInt("id");
+            String title = keys.getString("title");
+            topics.add(new ForumTopic(id, title));
+        }
+
+        statement.execute();
+        statement.close();
+        conn.close();
+
+        return topics;
+    }
+
     public List<Topic> findByTitle(String extract) throws SQLException {
         String query = "SELECT * FROM topic WHERE title LIKE ?";
         List<Topic> topics = new ArrayList<>();
@@ -121,8 +146,7 @@ public class TopicDao {
     public static void main(String[] args) throws SQLException {
 
         TopicDao dao = new TopicDao();
-        System.out.println(dao.listTopics());
-        dao.createTopic(13, "termites");
+        System.out.println(dao.findByUser(12));
 
     }
 }

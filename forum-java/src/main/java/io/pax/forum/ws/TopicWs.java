@@ -31,15 +31,22 @@ public class TopicWs {
         return dao.findCommentsFromTopic(topicId);
     }*/
 
+    @GET
+    @Path("{id}")
+    public List<Topic> getTopicsByUser(@PathParam("id") int userId) throws SQLException {
+        TopicDao dao = new TopicDao();
+        return dao.findByUser(userId);
+    }
+
     @POST
     public ForumTopic createTopic(ForumTopic topic) throws SQLException {
         ForumUser admin = topic.getAdmin();
 
-        if (admin==null){
+        if (admin == null) {
             throw new NotAcceptableException("No user id sent");
         }
 
-        if (topic.getTitle().length() < 2){
+        if (topic.getTitle().length() < 2) {
             throw new NotAcceptableException("406: user name must have at least 2 letters");
         }
 
@@ -52,10 +59,6 @@ public class TopicWs {
         }
 
     }
-
-
-
-
 
 
     @DELETE

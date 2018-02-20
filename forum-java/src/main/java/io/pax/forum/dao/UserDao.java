@@ -16,14 +16,14 @@ public class UserDao {
 
     Connector connector = new Connector();
 
-    public List<User> listUsers() throws SQLException{
+    public List<User> listUsers() throws SQLException {
 
         List<User> users = new ArrayList<>();
         Connection conn = this.connector.getConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM user");
 
-        while (rs.next()){
+        while (rs.next()) {
             String name = rs.getString("name");
             int id = rs.getInt("id");
             users.add(new ForumUser(id, name));
@@ -43,7 +43,7 @@ public class UserDao {
 
         Connection conn = this.connector.getConnection();
         PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        statement.setString(1,name);
+        statement.setString(1, name);
         //statement.setInt(1,id);
 
         statement.executeUpdate();
@@ -65,14 +65,14 @@ public class UserDao {
 
         Connection conn = this.connector.getConnection();
         PreparedStatement statement = conn.prepareStatement(query);
-        statement.setInt(1,userId);
+        statement.setInt(1, userId);
 
         statement.executeUpdate();
         statement.close();
         conn.close();
     }
 
-    public void deleteByName(String name) throws SQLException{
+    public void deleteByName(String name) throws SQLException {
         String query = "DELETE FROM user WHERE name=?";
 
         System.out.println(query);
@@ -86,7 +86,7 @@ public class UserDao {
         conn.close();
     }
 
-    public ForumUser findUserWithTopics(int userId) throws SQLException {
+    public ForumUser findAdminWithTopics(int userId) throws SQLException {
         Connection connection = this.connector.getConnection();
         String query = "SELECT * FROM topic t RIGHT JOIN user u ON t.admin_id=u.id WHERE u.id =?";
 
@@ -117,7 +117,7 @@ public class UserDao {
         return user;
     }
 
-        public List<User> findByName(String extract) throws SQLException{
+    public List<User> findByName(String extract) throws SQLException {
         String query = "SELECT * FROM user WHERE name LIKE ?";
         List<User> users = new ArrayList<>();
         System.out.println(query);
@@ -129,7 +129,7 @@ public class UserDao {
         ResultSet keys = statement.executeQuery();
 
 
-        while (keys.next()){
+        while (keys.next()) {
             int id = keys.getInt("id");
             String name = keys.getString("name");
             users.add(new ForumUser(id, name));
@@ -144,15 +144,15 @@ public class UserDao {
     }
 
 
-    public void updateUser(int userId, String newName) throws SQLException{
+    public void updateUser(int userId, String newName) throws SQLException {
         String query = "UPDATE user SET name=? WHERE id=?";
 
         System.out.println(query);
 
         Connection conn = this.connector.getConnection();
         PreparedStatement statement = conn.prepareStatement(query);
-        statement.setString(1,newName);
-        statement.setInt(2,userId);
+        statement.setString(1, newName);
+        statement.setInt(2, userId);
 
         statement.executeUpdate();
 
@@ -164,7 +164,7 @@ public class UserDao {
     public static void main(String[] args) throws SQLException {
 
         UserDao dao = new UserDao();
-        System.out.println(dao.findUserWithTopics(12).getTopics());
+        System.out.println(dao.findAdminWithTopics(12).getTopics());
         //dao.deleteByName("Walou");
 /*        dao.createUser("Arnaud");
         dao.createUser("Asmaâ");

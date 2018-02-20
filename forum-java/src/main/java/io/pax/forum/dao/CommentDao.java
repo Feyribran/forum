@@ -104,7 +104,6 @@ public class CommentDao {
             int userId = rs.getInt("c.user_id");
             ForumUser user =findUser(userId);
 
-
             ForumComment comment = new ForumComment(id, new ForumTopic(topicId, title));
             comment.setUser(user);
             comment.setContent(content);
@@ -117,11 +116,39 @@ public class CommentDao {
         return comments;
     }
 
+    public int createComment(String content, int userId, int topicId) throws SQLException {
+        String query = "INSERT INTO comment (content, user_id, topic_id) VALUES (?,?,?)";
+
+        System.out.println(query);
+
+        Connection conn = this.connector.getConnection();
+        PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        statement.setString(1, content);
+        statement.setInt(2, userId);
+        statement.setInt(3, topicId);
+/*
+        ForumUser user = findUser(userId);
+        ForumTopic topic = new ForumTopic(topicId);*/
+
+        statement.executeUpdate();
+        ResultSet keys = statement.getGeneratedKeys();
+        keys.next();
+        int id = keys.getInt(1);
+
+
+        statement.close();
+        conn.close();
+
+        return id;
+    }
+
+
+
     public static void main(String[] args) throws SQLException {
         CommentDao dao = new CommentDao();
 
 
-        System.out.println(dao.findCommentsFromTopic(3));
+        System.out.println(dao.createComment("ça pique !", 12, 4));
     }
 
 }

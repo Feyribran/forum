@@ -2,6 +2,9 @@ package io.pax.forum.ws;
 
 import io.pax.forum.dao.CommentDao;
 import io.pax.forum.domain.Comment;
+import io.pax.forum.domain.ForumComment;
+import io.pax.forum.domain.ForumTopic;
+import io.pax.forum.domain.ForumUser;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -36,6 +39,24 @@ public class CommentWS {
         CommentDao dao = new CommentDao();
 
         return dao.findCommentsFromTopic(topicId);
+    }
+
+    @POST
+    public ForumComment createComment(ForumComment comment) throws SQLException {
+
+        ForumTopic topic = comment.getTopic();
+        ForumUser user = comment.getUser();
+        if (comment.getContent().length() < 2) {
+            throw new NotAcceptableException("406: user name must have at least 2 letters");
+        }
+
+        try {
+            int id = new CommentDao().createComment(comment.getContent(), comment.getUser().getId(), comment.getTopic().getId() );
+            return new ForumComment(id, comment.getTopic(), comment.getUser());
+        } catch (SQLException e) {
+            throw e;
+        }
+
     }
 
 }
