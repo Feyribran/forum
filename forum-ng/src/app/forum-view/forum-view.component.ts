@@ -68,7 +68,6 @@ export class ForumViewComponent implements OnInit {
       .fetchCommentsFromTopic(topic)
       .then(commentsTopic => topic.comments = commentsTopic)
       .then(console.log);
-    ;
 
   }
 

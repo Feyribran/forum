@@ -22,6 +22,18 @@ export class DataService {
 
   }
 
+  fetchTopics(): Promise<Topic[]> {
+    return this.http
+      .get('http://localhost:8080/forum/api/topics')
+      .toPromise()
+      .then(topics => {
+        console.log(topics)
+        return topics;
+      })
+      .then(data => data as Topic[])
+
+  }
+
   fetchAdminWithTopics(user: User): Promise<User> {
     let url = 'http://localhost:8080/forum/api/users/' + user.id;
     return this.http
@@ -86,7 +98,8 @@ export class DataService {
 
     console.log('Sending commentDTO' + dto);
 
-    return this.http.post(url, dto)
+    return this.http
+      .post(url, dto)
       .toPromise()
       .then(data => console.log('Success :) ', data))
 

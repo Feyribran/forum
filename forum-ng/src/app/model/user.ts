@@ -8,7 +8,7 @@ import {Comment} from "./comment";
 export class User{
   name: string;
   id: number;
-  topics: Topic[];
-  comments: Comment[];
+  topics: Topic[] = [];
+  comments: Comment[] = [];
 
 }

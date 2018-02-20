@@ -1,6 +1,23 @@
 <section>
   Select topic :
   <select>
-    <option *ngFor="let topic of selectedUser.topics" >{{topic.title}}</option>
+    <option *ngFor="let topic of topics" (click)="details(topic)">{{topic.title}}</option>
   </select>
+</section>
+
+
+<section *ngIf="selectedTopic">
+  <!-- Input for creating topic -->
+  <section>
+    <form>
+      <input type="text" name="FormTopic" [(ngModel)]="createdTopic.title">
+      <button (click)="createTopic()">create topic</button>
+    </form>
+  </section>
+  <h3>{{selectedTopic.title}}</h3>
+  <ul>
+    <li *ngFor="let comment of selectedTopic.comments">
+      {{comment.user.name}} : {{comment.content}}
+    </li>
+  </ul>
 </section>

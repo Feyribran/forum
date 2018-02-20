@@ -5,6 +5,6 @@ export class Topic{
   title: string;
   id: number;
   admin: User;
-  comments: Comment[];
+  comments: Comment[] = [];
 
 }
