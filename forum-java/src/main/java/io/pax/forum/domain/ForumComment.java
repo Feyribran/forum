@@ -22,6 +22,11 @@ public class ForumComment implements Comment {
         this.user = user;
     }
 
+    public ForumComment(int id, ForumTopic topic) {
+        this.id = id;
+        this.topic = topic;
+    }
+
     public int getId() {
         return id;
     }
@@ -40,7 +45,7 @@ public class ForumComment implements Comment {
     }
 
     @Override
-    public Topic getTopic() {
+    public ForumTopic getTopic() {
         return topic;
     }
 
@@ -56,8 +61,8 @@ public class ForumComment implements Comment {
         this.user = user;
     }
 
-/*    @Override
+    @Override
     public String toString() {
-        return "comment : " +id+ " from " +user.getId();
-    }*/
+        return content;
+    }
 }

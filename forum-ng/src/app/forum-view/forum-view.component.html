@@ -7,6 +7,7 @@
   </section>
 
   <section *ngIf="selectedUser">
+    <h2>{{selectedUser.name}}'s topics</h2>
     <ul>
       <li *ngFor="let topic of selectedUser.topics">
         <a (click)="getComments(topic)">{{topic.title}}</a>
@@ -17,7 +18,7 @@
     <section *ngIf="selectedTopic">
       <ul>
         <li *ngFor="let comment of selectedTopic.comments">
-          {{comment.content}}
+          {{comment.user.name}} : {{comment.content}}
         </li>
       </ul>
     </section>

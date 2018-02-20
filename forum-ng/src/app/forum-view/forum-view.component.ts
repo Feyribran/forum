@@ -49,10 +49,16 @@ export class ForumViewComponent implements OnInit {
       this.selectedTopic.comments = [];
     }
 
-    this.dataService
+/*    this.dataService
       .fetchCommentsFromUser(this.selectedUser)
       .then(commentsUser => this.selectedUser.comments = commentsUser)
-      .then(console.log);
+      .then(console.log);*/
+
+        this.dataService
+     .fetchCommentsFromTopic(this.selectedTopic)
+     .then(commentsTopic => this.selectedTopic.comments = commentsTopic)
+     .then(console.log);
+
   }
 
   createTopic(){

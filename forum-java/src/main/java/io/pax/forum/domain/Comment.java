@@ -5,7 +5,7 @@ package io.pax.forum.domain;
  */
 public interface Comment {
 
+    ForumTopic getTopic();
     User getUser();
-    Topic getTopic();
     String getContent();
 }

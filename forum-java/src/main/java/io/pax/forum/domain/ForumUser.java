@@ -17,6 +17,10 @@ public class ForumUser implements User {
         this.name = name;
     }
 
+    public ForumUser(int id){
+        this.id = id;
+    }
+
     public ForumUser(int id, String name){
         this.id = id;
         this.name = name;

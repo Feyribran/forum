@@ -54,16 +54,12 @@ public class ForumTopic implements Topic{
         return this.comments;
     }
 
-    public void setName(String title) {
-        this.title = title;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
     @Override

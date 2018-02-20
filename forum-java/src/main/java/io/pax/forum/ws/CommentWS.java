@@ -22,11 +22,20 @@ public class CommentWS {
         return dao.listComments();
     }
 
-    @GET
-    @Path("{id}")
-    public List<Comment> getCommentsFromUser(@PathParam("id") int userId) throws SQLException {
+/*    @GET
+    @Path("{userId}")
+    public List<Comment> getCommentsFromUser(@PathParam("userId") int userId) throws SQLException {
         CommentDao dao = new CommentDao();
+
         return dao.listCommentsFromUser(userId);
+    }*/
+
+    @GET
+    @Path("{topicId}")
+    public List<Comment> getCommentsFromTopic(@PathParam("topicId") int topicId) throws SQLException {
+        CommentDao dao = new CommentDao();
+
+        return dao.findCommentsFromTopic(topicId);
     }
 
 }

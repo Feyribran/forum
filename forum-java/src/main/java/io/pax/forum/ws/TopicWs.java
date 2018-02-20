@@ -24,6 +24,13 @@ public class TopicWs {
         return dao.listTopics();
     }
 
+/*    @GET
+    @Path("{topicId}")
+    public List<Comment> getCommentsFromTopic(@PathParam("topicId") int topicId) throws SQLException {
+        CommentDao dao = new CommentDao();
+        return dao.findCommentsFromTopic(topicId);
+    }*/
+
     @POST
     public ForumTopic createTopic(ForumTopic topic) throws SQLException {
         ForumUser admin = topic.getAdmin();
@@ -45,6 +52,11 @@ public class TopicWs {
         }
 
     }
+
+
+
+
+
 
     @DELETE
     @Path("{id}")
